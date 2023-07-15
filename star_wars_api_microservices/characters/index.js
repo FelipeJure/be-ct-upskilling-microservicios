@@ -1,5 +1,10 @@
 const server = require("./src/server");
 
-server.listen(8000, () => {
-  console.log("Server listening on port 8000");
-});
+const PORT = 8001
+
+const main = async () => {
+  await server.listen(PORT)
+  console.log(`Characters server listening on port ${PORT}`);
+}
+
+main()
