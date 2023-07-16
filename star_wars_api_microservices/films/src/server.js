@@ -8,4 +8,15 @@ server.use(morgan("dev"));
 
 server.use(require("./routes"));
 
+server.use('*', (req, res) => {
+    return res.status(404).send('Not Found')
+})
+
+server.use((error, req, res, next) => {
+    res.status(error.statusCode || 500).send({
+        error: true,
+        message: error.message
+    })
+})
+
 module.exports = server;
