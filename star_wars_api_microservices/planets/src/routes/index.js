@@ -3,6 +3,6 @@ const { getPlanets } = require('../controllers')
 
 const router = Router();
 
-router.get("/", getPlanets);
+router.get("/planets", getPlanets);
 
 module.exports = router;
