@@ -20,4 +20,11 @@ app.use("/planets", createProxyMiddleware({
 	changeOrigin:true
 }))
 
-app.listen(8000)
+const PORT = 8000
+
+const main = async () => {
+	await app.listen(PORT)
+	console.log(`Gateway server running on port ${PORT}`);
+}
+
+main()
