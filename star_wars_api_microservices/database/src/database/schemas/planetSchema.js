@@ -13,3 +13,17 @@ const planetSchema = new Schema({
     residents: [{type: String, ref:'Character'}],
     films: [{type: String, ref:'Film'}]
 })
+
+planetSchema.statics.list = async function () {
+    return await this.find()
+    .populate('residents', ['_id', 'name'])
+    .populate('films', ['_id', 'title'])
+} 
+
+planetSchema.statics.get = async function (id) {
+    return await this.findById(id)
+    .populate('residents', ['_id', 'name'])
+    .populate('films', ['_id', 'title'])
+}
+
+module.exports = planetSchema
