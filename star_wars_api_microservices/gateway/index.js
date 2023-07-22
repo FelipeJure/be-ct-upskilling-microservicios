@@ -1,31 +1,43 @@
 const express = require("express");
 const {createProxyMiddleware} = require("http-proxy-middleware");
 const morgan = require('morgan')
+require('dotenv').config()
 
 const app = express();
 
 app.use(morgan('dev'))
 
+const { PORT, CHARACTER_PORT, FILM_PORT, PLANET_PORT } = process.env
+
 app.use("/characters", createProxyMiddleware({
-	target:"http://characters:8001",
+	target:`http://characters:${CHARACTER_PORT}`,
 	changeOrigin:true
 }))
 
 app.use("/characters/:id", createProxyMiddleware({
-	target:"http://characters/:id:8001",
+	target:`http://characters/:id:${CHARACTER_PORT}`,
 	changeOrigin:true
 }))
 
 app.use("/films", createProxyMiddleware({
-	target:"http://films:8002",
-	changeOrigin:true
-}))
-app.use("/planets", createProxyMiddleware({
-	target:"http://planets:8003",
+	target:`http://films:${FILM_PORT}`,
 	changeOrigin:true
 }))
 
-const PORT = 8000
+app.use("/films/:id", createProxyMiddleware({
+	target:`http://films/:id:${FILM_PORT}`,
+	changeOrigin:true
+}))
+
+app.use("/planets", createProxyMiddleware({
+	target:`http://planets:${PLANET_PORT}`,
+	changeOrigin:true
+}))
+
+app.use("/planets/:id", createProxyMiddleware({
+	target:`http://planets/:id:${PLANET_PORT}`,
+	changeOrigin:true
+}))
 
 const main = async () => {
 	await app.listen(PORT)

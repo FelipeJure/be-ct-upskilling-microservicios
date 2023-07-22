@@ -1,6 +1,7 @@
 const server = require("./src/server");
+require('dotenv').config()
 
-const PORT = 8001
+const { PORT } = process.env
 
 const main = async () => {
   await server.listen(PORT)
