@@ -11,6 +11,11 @@ app.use("/characters", createProxyMiddleware({
 	changeOrigin:true
 }))
 
+app.use("/characters/:id", createProxyMiddleware({
+	target:"http://characters/:id:8001",
+	changeOrigin:true
+}))
+
 app.use("/films", createProxyMiddleware({
 	target:"http://films:8002",
 	changeOrigin:true
