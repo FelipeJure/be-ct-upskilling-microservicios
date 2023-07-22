@@ -5,6 +5,6 @@ const router = Router();
 
 router.get("/characters", getCharacters);
 
-router.get("/characters", getOneCharacter);
+router.get("/characters/:id", getOneCharacter);
 
 module.exports = router;

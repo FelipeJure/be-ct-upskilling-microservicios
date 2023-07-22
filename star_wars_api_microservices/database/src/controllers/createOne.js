@@ -1,4 +1,3 @@
-const { response } = require('../utils');
 const store = require('../database');
 
 module.exports = async (req, res, next) => {
@@ -6,7 +5,7 @@ module.exports = async (req, res, next) => {
     const newElement = req.body
     try{
         const data = await store[model].create(newElement)
-        response(res, 200, data)
+        res.status(200).send(data)
     } catch (error) {
         next(`Ya existe un ${model} con ese ID`)
     }
