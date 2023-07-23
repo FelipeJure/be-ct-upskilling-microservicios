@@ -7,7 +7,7 @@ const app = express();
 
 app.use(morgan('dev'))
 
-const { PORT, CHARACTER_PORT, FILM_PORT, PLANET_PORT } = process.env
+const [ PORT, CHARACTER_PORT, FILM_PORT, PLANET_PORT ] = [8000, 8001, 8002, 8003]
 
 app.use("/characters", createProxyMiddleware({
 	target:`http://characters:${CHARACTER_PORT}`,

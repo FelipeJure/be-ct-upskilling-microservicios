@@ -1,6 +1,6 @@
 const app = require('./src/server');
-const { PORT } = require('./src/configs/envs')
 
+const PORT = 8004
 
 const main = async () => {
     await app.listen(PORT)
